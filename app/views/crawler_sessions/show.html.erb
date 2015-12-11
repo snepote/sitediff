@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @crawler_session.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @crawler_session.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_crawler_session_path(@crawler_session) %> |
+<%= link_to 'Back', crawler_sessions_path %>

@@ -1,0 +1,6 @@
+<li>
+  <%= link_to url.id, url %>
+  <%= link_to 'Edit', edit_url_path(url), class: "btn btn-success" %>
+  <%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <%= url.url %>
+</li>

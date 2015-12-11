@@ -1,0 +1,6 @@
+<li>
+  <%= link_to image_tag(screenshot.file_path, alt: screenshot.file_path), screenshot %>
+  <%= screenshot.file_path %>
+  <%= link_to 'Edit', edit_screenshot_path(screenshot), class: "btn btn-success" %>
+  <%= link_to 'Destroy', screenshot, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</li>

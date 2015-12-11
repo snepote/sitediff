@@ -1,0 +1,17 @@
+<%= provide(:title, 'Listing urls history') %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing urls history</h1>
+
+<%= will_paginate %>
+
+<ul class="listings">
+  <%= render @url_histories %>
+</ul>
+
+<%= will_paginate %>
+
+<br>
+
+<%= link_to 'New Url history', new_url_history_path, class: "btn btn-primary" %>

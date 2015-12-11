@@ -1,0 +1,17 @@
+<%= provide(:title, 'Crawler sessions') %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Crawler Sessions</h1>
+
+<%= will_paginate %>
+
+<ul class="listings">
+  <%= render @crawler_sessions %>
+</ul>
+
+<%= will_paginate %>
+
+<br>
+
+<%= link_to 'New Crawler session', new_crawler_session_path, class: "btn btn-primary" %>

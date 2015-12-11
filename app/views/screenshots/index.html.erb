@@ -1,0 +1,17 @@
+<%= provide(:title, 'Listing Screenshots') %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Screenshots</h1>
+
+<%= will_paginate %>
+
+<ul class="listings">
+  <%= render @screenshots %>
+</ul>
+
+<%= will_paginate %>
+
+<br>
+
+<%= link_to 'New Screenshot', new_screenshot_path, class: "btn btn-primary" %>

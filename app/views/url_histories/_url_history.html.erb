@@ -1,0 +1,9 @@
+<li>
+  <%= url_history.url.url %>
+  <%= url_history.crawler_session.start_time %>
+  <%= image_tag(url_history.screenshot.file_path, alt: url_history.screenshot.file_path) %>
+  <%= url_history.diff_to_previous %>
+  <%= link_to 'Show', url_history %>
+  <%= link_to 'Edit', edit_url_history_path(url_history), class: "btn btn-success" %>
+  <%= link_to 'Destroy', url_history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</li>

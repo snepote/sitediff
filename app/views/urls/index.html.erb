@@ -1,0 +1,17 @@
+<%= provide(:title, 'URLs') %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Urls</h1>
+
+<%= will_paginate %>
+
+<ul class="listings">
+  <%= render @urls %>
+</ul>
+
+<%= will_paginate %>
+
+<br>
+
+<%= link_to 'New Url', new_url_path, class: "btn btn-primary" %>

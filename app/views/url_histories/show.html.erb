@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @url_history.url %>
+</p>
+
+<p>
+  <strong>Crawler session:</strong>
+  <%= @url_history.crawler_session %>
+</p>
+
+<p>
+  <strong>Screenshot:</strong>
+  <%= @url_history.screenshot %>
+</p>
+
+<p>
+  <strong>Diff to previous:</strong>
+  <%= @url_history.diff_to_previous %>
+</p>
+
+<%= link_to 'Edit', edit_url_history_path(@url_history) %> |
+<%= link_to 'Back', url_histories_path %>

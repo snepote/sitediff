@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url_id: 
+  crawler_session_id: 
+  screenshot_id: 
+  diff_to_previous: 1.5
+
+two:
+  url_id: 
+  crawler_session_id: 
+  screenshot_id: 
+  diff_to_previous: 1.5
