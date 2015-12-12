@@ -17,6 +17,7 @@ gem 'jbuilder',                '2.2.3'
 gem 'sitemap-parser',          '0.2.1'
 gem 'screencap',               '0.1.4'
 gem 'chunky_png',              '1.3.5'
+gem 'sidekiq',                 '4.0.1'
 gem 'sdoc',                    '0.4.0', group: :doc
 
 group :development, :test do

@@ -16,4 +16,8 @@
 !/log/.keep
 /tmp
 
+# Screenshots folder
+/app/assets/images/screenshots
+
+# IDE files
 .idea
