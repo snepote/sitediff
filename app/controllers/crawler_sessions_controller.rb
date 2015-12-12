@@ -1,3 +1,6 @@
+require 'sitemap-parser'
+require 'screencap'
+
 class CrawlerSessionsController < ApplicationController
   before_action :set_crawler_session, only: [:show, :edit, :update, :destroy]
 
@@ -11,13 +14,48 @@ class CrawlerSessionsController < ApplicationController
   # GET /crawler_sessions/1.json
   def show
     id = params[:id].to_i
-    @url_histories = UrlHistory.where(crawler_session_id: id)
-    @url_histories_prev = UrlHistory.where(crawler_session_id: (id - 1) )
+    @url_histories = UrlHistory.where(crawler_session_id: id).paginate(page: params[:page])
+    @url_histories_prev = UrlHistory.where(crawler_session_id: (id - 1) ).paginate(page: params[:page])
   end
 
   # GET /crawler_sessions/new
   def new
-    @crawler_session = CrawlerSession.new
+    start_time = DateTime.now
+    urls = []
+    sitemap = SitemapParser.new 'https://www.helpling.de/sitemap.xml'
+    sitemap.urls.to_a.each do |url|
+      urls << url.at('loc').content
+    end
+    urls.uniq!
+    @crawler_session = CrawlerSession.create!(
+        start_time: start_time,
+        end_time: DateTime.now
+    )
+
+    urls.each do |url|
+      @url_history = UrlHistory.new(
+          crawler_session_id: @crawler_session.id,
+          url: url
+      )
+      @url_history.save
+    end
+
+    # @url_history_image = UrlHistory.where( crawler_session_id: @crawler_session.id).first
+    #
+    # f = Screencap::Fetcher.new(@url_history_image.url)
+    # image_url = @url_history_image.url
+    # replacements = [ ["https://www.", ""], ["/", ""] ]
+    # replacements.each {|replacement| image_url.gsub!(replacement[0], replacement[1])}
+    # screenshot = f.fetch( :output => image_url)
+    # @url_history_image.update_attributes( :image_path => Rails.root.join( 'app',
+    #                                                                       'assets',
+    #                                                                       'images',
+    #                                                                       'screenshots',
+    #                                                                       start_time.strftime('%Q'),
+    #                                                                       "#{image_url.strip}.png") )
+    # @url_history_image.save
+
+    redirect_to crawler_sessions_url
   end
 
   # GET /crawler_sessions/1/edit

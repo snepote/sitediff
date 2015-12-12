@@ -1,9 +1,21 @@
 <li>
-  <%= url_history.crawler_session_id %>
-  <%= url_history.url %>
-  <%= image_tag("screenshots/#{url_history.image_path}", alt: url_history.image_path) %>
-  <%= url_history.diff_to_previous %>
-  <%= link_to 'Show', url_history %>
-  <%= link_to 'Edit', edit_url_history_path(url_history), class: "btn btn-success" %>
-  <%= link_to 'Destroy', url_history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <%
+    unless url_history.image_path.nil? || url_history.image_path.empty?
+      concat image_tag("screenshots/#{url_history.image_path}", alt: url_history.image_path)
+    else
+      concat image_tag('no_screenshot.png', alt: 'No screenshot')
+    end
+  %>
+  &nbsp;
+  <%
+    prev = (url_histories_prev.select{ |u| u.url  == url_history.url }).first unless url_histories_prev.nil?
+    unless prev.nil? || prev.image_path.nil? || prev.image_path.empty?
+      concat image_tag("screenshots/#{prev.image_path}", alt: prev.image_path)
+    else
+      concat image_tag('no_previous_image.png', alt: 'No previous image')
+    end
+  %>
+  <%= link_to 'Show details', url_history, class: "btn btn-info" %>
+  <strong>Diff:</strong> <%= url_history.diff_to_previous %>
+  <strong>Url:</strong> <%= link_to url_history.url, url_history %>
 </li>

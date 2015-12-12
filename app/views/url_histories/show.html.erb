@@ -2,7 +2,7 @@
 
 <p>
   <strong>Crawler session:</strong>
-  <%= @url_history.crawler_session %>
+  <%= @url_history.crawler_session.id %>
 </p>
 
 <p>
@@ -20,5 +20,9 @@
   <%= @url_history.diff_to_previous %>
 </p>
 
-<%= link_to 'Edit', edit_url_history_path(@url_history) %> |
-<%= link_to 'Back', url_histories_path %>
+<p>
+  <%= link_to 'Edit', edit_url_history_path(@url_history), class: "btn btn-success" %>
+  <%= link_to 'Destroy', @url_history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+</p>
+
+<%= link_to 'Back', @url_history.crawler_session, class: "btn btn-default" %>

@@ -15,26 +15,21 @@
   </tbody>
 </table>
 
+<%= link_to 'Back', root_url, class: "btn btn-default" %>
+<br />
+<%= will_paginate @url_histories %>
+
 <ul class="listings">
   <% @url_histories.each do |url_history| %>
-      <li>
-        <%= link_to url_history.url, url_history %>
-        <%  unless url_history.image_path.nil? || url_history.image_path.empty?
-              concat image_tag("screenshots/#{url_history.image_path}", alt: url_history.image_path)
-            else
-              concat image_tag('no_screenshot.png', alt: 'No screenshot')
-            end
-        %>&nbsp;
-        <% prev = (@url_histories_prev.select{ |u| u.url  == url_history.url }).first unless @url_histories_prev.nil?
-           unless prev.nil?
-             concat image_tag("screenshots/#{prev.image_path}", alt: prev.image_path)
-           else
-             concat image_tag('no_previous_image.png', alt: 'No previous image')
-           end
-        %>
-        <%= url_history.diff_to_previous %>
-      </li>
+    <%= render 'url_histories/url_history', { :url_history => url_history,
+                                              :url_histories_prev => @url_histories_prev }%>
   <% end %>
 </ul>
 
-<%= link_to 'Back', crawler_sessions_path %>
+<br />
+
+<%= will_paginate @url_histories %>
+
+<br />
+
+<%= link_to 'Back', root_url, class: "btn btn-default" %>
