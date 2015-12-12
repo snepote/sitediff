@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+5.times do |n|
+  CrawlerSession.create!(
+      start_time: Time.zone.now,
+      end_time: Time.zone.now + 1.hour
+  )
+end
+
+5.times do |i|
+  UrlHistory.create!(
+      crawler_session_id: i + 1,
+      url: 'http://www.helpling.de',
+      image_path: 'tapir.png',
+      diff_to_previous: 0
+  )
+  UrlHistory.create!(
+      crawler_session_id: i + 1,
+      url: 'http://www.helpling.nl',
+      image_path: 'tapir_hat.png',
+      diff_to_previous: 0
+  )
+end
+
+
+
+

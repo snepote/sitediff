@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+  <tr>
+    <th><strong>Start time:</strong></th>
+    <th>End time:</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @crawler_session.start_time %></td>
+        <td><%= @crawler_session.end_time %></td>
+      </tr>
+  </tbody>
+</table>
+
+<ul class="listings">
+  <% @url_histories.each do |url_history| %>
+      <li>
+        <%= link_to url_history.url, url_history %>
+        <%  unless url_history.image_path.nil? || url_history.image_path.empty?
+              concat image_tag("screenshots/#{url_history.image_path}", alt: url_history.image_path)
+            else
+              concat image_tag('no_screenshot.png', alt: 'No screenshot')
+            end
+        %>&nbsp;
+        <% prev = (@url_histories_prev.select{ |u| u.url  == url_history.url }).first unless @url_histories_prev.nil?
+           unless prev.nil?
+             concat image_tag("screenshots/#{prev.image_path}", alt: prev.image_path)
+           else
+             concat image_tag('no_previous_image.png', alt: 'No previous image')
+           end
+        %>
+        <%= url_history.diff_to_previous %>
+      </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', crawler_sessions_path %>
